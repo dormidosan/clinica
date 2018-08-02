@@ -15,44 +15,44 @@ class VariablesTableSeeder extends Seeder
     public function run()
     {
     	\DB::table('sexos')->insert(array(
-            'sexo' => 'm',
-            'nombre_sexo' => 'masculino',
+            'sexo_t' => 'h',
+            'nombre_sexo' => 'Hombre',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ));
 
         \DB::table('sexos')->insert(array(
-            'sexo' => 'f',
-            'nombre_sexo' => 'femenino',
+            'sexo_t' => 'm',
+            'nombre_sexo' => 'Mujer',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ));
 
         //-------------------
         \DB::table('tipo_fotos')->insert(array(
-            'tipo' => 'arr',
-            'tipo_nombre' => 'arriba',
+            'tipo' => 'siz',
+            'tipo_nombre' => 'superior izquierda',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ));
 
         \DB::table('tipo_fotos')->insert(array(
-            'tipo' => 'aba',
-            'tipo_nombre' => 'abajo',
+            'tipo' => 'sde',
+            'tipo_nombre' => 'superior derecha',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ));
 
         \DB::table('tipo_fotos')->insert(array(
-            'tipo' => 'izq',
-            'tipo_nombre' => 'izquierda',
+            'tipo' => 'iiz',
+            'tipo_nombre' => 'inferior izquierda',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ));
 
         \DB::table('tipo_fotos')->insert(array(
-            'tipo' => 'der',
-            'tipo_nombre' => 'derecha',
+            'tipo' => 'ide',
+            'tipo_nombre' => 'inferior derecha',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ));

@@ -16,7 +16,7 @@ class CreateSexosTable extends Migration
         Schema::create('sexos', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('sexo', 1)->nullable();
+            $table->string('sexo_t', 1)->nullable();
             $table->string('nombre_sexo', 10)->nullable();
             $table->timestamps();
         });

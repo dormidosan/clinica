@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -160,6 +160,15 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Custom Providers...
+         */
+        Collective\Html\HtmlServiceProvider::class,
+        /*
+         * Third party Providers...
+         */
+        Jenssegers\Date\DateServiceProvider::class,
+
     ],
 
     /*
@@ -208,6 +217,15 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        /*
+         * Custom Aliases...
+         */
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        /*
+         * Third party Aliases...
+         */
+        'Date' => Jenssegers\Date\Date::class,
 
     ],
 

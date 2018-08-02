@@ -17,6 +17,7 @@ class CreateControlesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->unsignedInteger('expediente_id');
+            $table->string('descripcion', 255)->nullable();
             $table->date('fecha')->nullable();
             $table->time('hora')->nullable();
             $table->timestamps();

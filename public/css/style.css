@@ -1,0 +1,42 @@
+
+.nav {
+	background-color: #ffffff;
+	padding: .5rem 1rem;
+}
+
+body{
+	background-color: #f5f8fa;
+}
+
+.nav-link {
+	display: inline-block;
+	padding-top: .32rem;
+	padding-bottom: .32rem;
+	margin-right: 1rem;
+	font-size: 1.125rem;
+	line-height: inherit;
+	white-space: nowrap;
+}
+
+nav{
+	background-color: white;
+}
+
+.navbar {
+	position: relative;
+	padding: .5rem 1rem;
+}
+
+.navbar {
+	position: relative;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-ms-flex-align: center;
+	align-items: center;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	padding: 0rem 1rem;
+}
+
