@@ -13,6 +13,15 @@
          <div class="panel panel-default">
                 <div class="panel-heading clearfix">
                 @include('pacientes.menus.layout1')
+                @include('pacientes.menus.layout2')
+                @include('pacientes.menus.layout3')
+                <form id="pagos" name="pagos" class="pagos" method="post" action="{{ route('pagos.post') }}">
+   {{ csrf_field() }}
+   <input type="hidden" name="expediente_id" value="{{$expediente->id}}">
+   <button type="submit" disabled class="btn btn-success" style="float: left;">Pagos</button>
+</form>
+
+
             </div>
             
             <div class="panel-body">

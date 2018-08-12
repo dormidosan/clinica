@@ -14,14 +14,14 @@
    <div class="col-md-12">
       <div class="panel panel-default">
          <div class="panel-heading clearfix">
-            <a class="btn btn-success" href="{{ url('expediente') }}" role="button" style="float: left;">Expediente</a>
-            <form id="fotos" name="fotos" class="fotos" method="post" action="{{ route('fotos.post') }}">
-               {{ csrf_field() }}
-               <!-- input type="hidden" name="expediente_id" value="-{-{-$-expediente->id}}" -->
-               <button type="submit" class="btn btn-primary" style="float: left;">Fotos</button>
-            </form>
-            <a class="btn btn-primary" href="{{ url('controles') }}" role="button" style="float: left;">Controles</a>
-            <a class="btn btn-primary" href="{{ url('pagos') }}" role="button" style="float: left;">Pagos</a>
+                @include('pacientes.menus.layout1')
+                @include('pacientes.menus.layout2')
+                <form id="controles" name="controles" class="controles" method="post" action="{{ route('controles.post') }}">
+   {{ csrf_field() }}
+   <input type="hidden" name="expediente_id" value="{{$expediente->id}}">
+   <button type="submit" disabled class="btn btn-success" style="float: left;">Controles</button>
+</form>
+                @include('pacientes.menus.layout4')
             <h4 class="fecha-control">
 
               Control de fecha: {{ $control->fecha->format('l j \d\e F Y')  }}</h4>
