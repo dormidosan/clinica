@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/listado', 'PacienteController@index')->name('listado.get');
+//Route::get('/listado', 'PacienteController@index')->name('listado.get');
 Route::get('/creacion', 'PacienteController@creacion')->name('creacion.get');
 Route::post('creacion', 'PacienteController@creacion_expediente')->name('creacion.post');
 

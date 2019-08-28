@@ -17,7 +17,7 @@ class CreateTipoFotosTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('tipo', 4)->nullable();
-            $table->string('tipo_nombre', 15)->nullable();
+            $table->string('tipo_nombre', 20)->nullable();
             $table->timestamps();
         });
     }

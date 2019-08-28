@@ -42,7 +42,7 @@ class PacienteController extends Controller
 
     public function creacion_expediente(Request $request, Redirector $redirect)
     {
-        
+
         $persona = new Persona($request->all());
         $persona->save();
 
@@ -87,51 +87,57 @@ class PacienteController extends Controller
 
     public function busqueda()
     {   
-        $pacientes = Paciente::where('id','=','0')->get();
-        return view('pacientes.busqueda')->with('pacientes', $pacientes);
+        #cambiar a ajax
+        #$pacientes = Paciente::where('id','=','0')->get();
+        return view('pacientes.busqueda');
     }
 
     public function buscar_expedientes(Request $request, Redirector $redirect)
     {   
-        $pacientes = Paciente::where('id','=','0')->get();
+        //$pacientes = Paciente::where('id','=','0')->get();
+
 
         if (($request->codigo or $request->nombre) == NULL) {
-            return view('pacientes.busqueda')->with('pacientes', $pacientes);
-        }
+            $pacientes = Paciente::paginate(4);
+            return view('pacientes.busqueda.tabla')->with('pacientes', $pacientes)->render();
+        }else{
+            if ($request->codigo != NULL) {
+                $pacientes = Paciente::where('id','=',$request->codigo)->get();
+                return view('pacientes.busqueda.tabla')->with('pacientes', $pacientes); 
 
-        if ($request->codigo != NULL) {
-            $pacientes = Paciente::where('id','=',$request->codigo)->get();
-            return view('pacientes.busqueda')->with('pacientes', $pacientes); 
-
-        } elseif($request->nombre != NULL) {
+            } elseif($request->nombre != NULL) {
 
             // separar nombres en un array
-            $nombres = explode(" ", $request->nombre);
-            
+                $nombres = explode(" ", $request->nombre);
+
             // buscar id de la vista, usando los nombres completos 
-            $id_personas = DB::table('nombres_completos')
+                $id_personas = DB::table('nombres_completos')
                 //->select('id')
                 ->where(function ($query) use ($nombres) {
-                            foreach($nombres as $nombre) {
-                              $query->orWhere('completo', 'like', '%' . $nombre . '%');
-                            }
+                    foreach($nombres as $nombre) {
+                      $query->orWhere('completo', 'like', '%' . $nombre . '%');
+                  }
                           //})->get();
-                          })->pluck('id')->toArray();
+              })->pluck('id')->toArray();
             //dd($id_personas); 
 
             //$ids = array_column($sqlnombres, 'id');
             //dd($ids); 
             //$users = DB::table('users')
                     //->whereIn('id', [1, 2, 3])->get();
-            $pacientes = Paciente::whereIn('persona_id',$id_personas)->get();
+                $pacientes = Paciente::whereIn('persona_id',$id_personas)->get();
 
             //dd($pacientes); 
 
-            return view('pacientes.busqueda')->with('pacientes', $pacientes); 
+                return view('pacientes.busqueda.tabla')->with('pacientes', $pacientes); 
+            }
+            else {
+                return view('pacientes.busqueda.tabla')->with('pacientes', $pacientes);
+            }
+
         }
-        else {
-            return view('pacientes.busqueda')->with('pacientes', $pacientes);
-        }
+
+        
         
 
         //return view('pacientes.busqueda');
@@ -198,7 +204,7 @@ class PacienteController extends Controller
 
     
 
-     public function fotoGuardar($objeto_imagen, $tipo_foto_id,$expediente_id, $destino)
+    public function fotoGuardar($objeto_imagen, $tipo_foto_id,$expediente_id, $destino)
     {
         //try{
         //$this->guardar_bitacora(Route::getCurrentRoute()->getPath(),"ingreso");
@@ -245,7 +251,7 @@ class PacienteController extends Controller
 
     
 
-  
+
 
     
 }
