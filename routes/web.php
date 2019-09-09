@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::get('/listado', 'PacienteController@index')->name('listado.get');
+Route::get('/listado', 'PacienteController@index')->name('listado.get');
 Route::get('/creacion', 'PacienteController@creacion')->name('creacion.get');
 Route::post('creacion', 'PacienteController@creacion_expediente')->name('creacion.post');
 
@@ -29,7 +29,8 @@ Route::post('/busqueda', 'PacienteController@buscar_expedientes')->name('busqued
 
 Route::post('/expediente', 'PacienteController@expediente')->name('expediente.post');
 
-
+Route::get('/pruebas', 'PacienteController@pruebas');
+Route::get('/extraer/{filename}', 'PacienteController@extraer');
 
 
 Route::post('/fotos', 'PacienteController@fotos')->name('fotos.post');

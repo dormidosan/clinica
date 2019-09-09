@@ -58,6 +58,7 @@ return [
         'fotos' => [
             'driver' => 'local',
             'root' => storage_path('app/public/fotos'),
+            //'root' => storage_path('fotospacientes'),
         ],
 
         's3' => [

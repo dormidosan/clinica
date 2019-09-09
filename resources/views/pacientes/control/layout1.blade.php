@@ -35,13 +35,13 @@
                                   <!--  -{-{ ($procedimiento->pagado == '1') ? "<h4></h4>" : "No pagado" }-} -->
 
 
-                                <!-- td>
+                                {{-- <td>
                                     <form id="control-{-{$control->id}}" name="control-{-{$control->id}}" class="control" method="post" action="{-{-route('control.post')}}"> 
                                     {{ csrf_field() }}
                                     <input type="hidden" class="form-control border-input" name="control_id" value="{{$control->id}}">
                                     <button type="submit" class="btn btn-info btn-fill btn-wd">QUITAR ESTO</button>
                                     </form>
-                                </td -->
+                                </td> --}}
                                 
                             </tr>
                             @empty

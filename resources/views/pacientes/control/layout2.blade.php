@@ -15,7 +15,7 @@
                <label>Precio</label>
                     <div class="input-group"> 
                         <span class="input-group-addon">$</span>
-                    <input type="text" class="form-control border-input" name="costo_procedimiento" placeholder="Costo del procedimiento" pattern="[0-9]+(\.[0-9]{1,2})" onkeypress="return isNumberKey(event)" required="required">
+                    <input type="text" class="form-control border-input" name="costo_procedimiento" placeholder="Costo (Ej: 7.00, 10.00, 50.00 )" pattern="[0-9]+(\.[0-9]{1,2})" onkeypress="return isNumberKey(event)" required="required">
                     </div> 
                     
             </div>
