@@ -7,7 +7,7 @@
 
                 @forelse($expediente->controles as $control)
                 <div class="table-responsive">
-                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <table  class="table table-striped table-bordered" style="width:100%">
                         <caption>
                             Fecha: {{ $control->fecha->format('l j \d\e F Y')  }} <br>
                             Descripción: {{ $control->descripcion }}
@@ -34,6 +34,7 @@
                                         <td><button type="button" class="btn btn-success">Abonar</button></td>                                
                                     </tr>
                                 @empty
+
                                 @endforelse
                             
 

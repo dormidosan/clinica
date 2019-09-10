@@ -29,7 +29,7 @@ class ControlController extends Controller
     public function controles(Request $request, Redirector $redirect)
     {   
         //$pacientes = Paciente::all();
-        $expediente = Expediente::where('id','=',$request->expediente_id)->first();
+        $expediente = Expediente::where('paciente_id','=',$request->paciente_id)->first();
         return view('pacientes.controles')
         //->with('pacientes', $pacientes)
         ->with('expediente', $expediente);

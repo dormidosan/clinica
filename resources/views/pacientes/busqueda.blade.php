@@ -52,9 +52,10 @@
                                             <td>{{ $paciente->direccion  }}</td>
                                             <td>{{ $paciente->email  }}</td>
                                             <td>
-                                                <form id="expediente{{$paciente->id}}" name="expediente{{$paciente->id}}" class="expediente" method="post" action="{{route('expediente.post')}}"> 
-                                                    {{ csrf_field() }}
-                                                    <input type="hidden" class="form-control border-input" name="paciente_id" value="{{$paciente->id}}">
+                                                <form id="expediente{{$paciente->id}}" name="expediente{{$paciente->id}}" c
+                                                    lass="expediente" method="get" action="{{route('paciente.expediente.get',$paciente->id)}}"> 
+                                                    {{-- {{ csrf_field() }} --}}
+                                                    {{-- <input type="hidden" class="form-control border-input" name="paciente_id" value="{{$paciente->id}}"> --}}
                                                     <button type="submit" class="btn btn-info btn-fill btn-wd">Acceder al expediente</button>
                                                 </form>
                                             </td>            

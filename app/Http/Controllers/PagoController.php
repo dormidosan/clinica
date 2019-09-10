@@ -19,7 +19,7 @@ class PagoController extends Controller
     {   
         //$pacientes = Paciente::all();
         //dd("variable"); 
-        $expediente = Expediente::where('id','=',$request->expediente_id)->first();
+        $expediente = Expediente::where('paciente_id','=',$request->paciente_id)->first();
         $pagos = Pago::where('expediente_id','=',$expediente->id)->get();
         //dd($pagos); 
 

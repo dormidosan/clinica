@@ -161,6 +161,7 @@ class PacienteController extends Controller
 
     public function expediente(Request $request, Redirector $redirect)
     {   
+        #$expediente = Expediente::where('paciente_id','=',$request->paciente_id)->first();
         $expediente = Expediente::where('paciente_id','=',$request->paciente_id)->first();
         return view('pacientes.expediente')->with('expediente', $expediente);
     }
@@ -168,7 +169,7 @@ class PacienteController extends Controller
 
     public function fotos(Request $request, Redirector $redirect)
     {  
-        return $this->listadoFotos($request->expediente_id);
+        return $this->listadoFotos($request->paciente_id);
     }
 
 
@@ -297,12 +298,13 @@ class PacienteController extends Controller
         ->with('foto4', $foto4);
     }
 
-    public function listadoFotos($expediente_id)
+    public function listadoFotos($paciente_id)
     {   
-        $expediente = Expediente::where('id','=',$expediente_id)->first();
+        $expediente = Expediente::where('paciente_id','=',$paciente_id)->first();
         $fotos = Foto::where('expediente_id','=',$expediente->id)->get();
         $tipo_fotos = TipoFoto::all()->pluck('tipo_nombre','id'); 
         #return $this->retornarFotos($expediente);
+
         return view('pacientes.fotos')
         ->with('fotos', $fotos)
         ->with('tipo_fotos', $tipo_fotos)

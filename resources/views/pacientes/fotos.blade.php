@@ -9,9 +9,9 @@
    <div class="panel panel-default">
     <div class="panel-heading clearfix">
      @include('pacientes.menus.layout1')
-     <form id="fotos" name="fotos" class="fotos" method="post" action="{{ route('fotos.post') }}">
-      {{ csrf_field() }}
-      <input type="hidden" name="expediente_id" value="{{$expediente->id}}">
+     <form  action="#">
+      {{-- {{ csrf_field() }}
+      <input type="hidden" name="expediente_id" value="{{$expediente->id}}"> --}}
       <button type="submit" disabled class="btn btn-success" style="float: left;">Fotos</button>
     </form>
     @include('pacientes.menus.layout3')
