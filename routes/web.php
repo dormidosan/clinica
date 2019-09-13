@@ -37,6 +37,11 @@ Route::get('paciente/{paciente_id}/fotos', 'PacienteController@fotos')->name('pa
 Route::get('paciente/{paciente_id}/controles', 'ControlController@controles')->name('paciente.controles.get');
 Route::get('paciente/{paciente_id}/pagos', 'PagoController@pagos')->name('paciente.pagos.get');
 
+Route::post('paciente/procedimiento', 'ProcedimientoController@procedimiento')->name('paciente.procedimiento.post');
+Route::post('paciente/pago/nuevo', 'PagoController@generar_pago')->name('paciente.pago.nuevo.post');
+
+
+
 Route::get('/pruebas', 'PacienteController@pruebas');
 Route::get('/extraer/{filename}', 'PacienteController@extraer');
 

@@ -27,4 +27,19 @@ class PagoController extends Controller
         ->with('pagos', $pagos)
         ->with('expediente', $expediente);
     }
+
+    public function generar_pago(Request $request, Redirector $redirect)
+    {   
+        //$pacientes = Paciente::all();
+        //dd("variable"); 
+        $pago =  new Pago($request->all());
+        
+        // $pago->procedimiento_id = 
+        // $pago->expediente_id =
+        //$expediente = Expediente::where('paciente_id','=',$request->paciente_id)->first();
+        //$pagos = Pago::where('expediente_id','=',$expediente->id)->get();
+        //dd($pagos); 
+
+        return 'exito';
+    }
 }

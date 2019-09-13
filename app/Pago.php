@@ -8,6 +8,7 @@ class Pago extends Model
 {
     //
     protected $table = 'pagos';
+    protected $fillable = ['fecha','monto'];
 
     //foraneas
     public function procedimiento()

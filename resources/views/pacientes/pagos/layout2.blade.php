@@ -1,50 +1,38 @@
-<form id="controles" name="controles" class="controles" method="post" action="{{ route('controles.save.post') }}">
+<form id="pago_nuevo"  method="post" action="#">
   {{ csrf_field() }}
-  <input type="hidden" name="expediente_id" value="{{$expediente->id}}">
+  <input type="hidden" name="procedimiento_id" value="">
    <div class="panel-body">
+    {{-- <div class="row">
+         <div class="col-md-12">
+          <p id="nombre-procedimiento" style="text-align:center;visibility: hidden;">X</p>
+         </div>
+    </div> --}}
       <div class="row">
-         <div class="col-md-4">
+         <div class="col-md-6">
             <div class="form-group">
                <label>Fecha</label>
                <span id="mobile-device-datepicker" style="display: none;">
                   <input type="date" id="fecha-mobile" name="fecha" class="form-control border-input" required="required" min="1960-04-01" max="{{date("Y-m-d")}}"  >     
                </span>
                <span id="desktop-device-datepicker">
-                <div class='input-group date' id='datecontrol' name="fecha">
-                    <input type='text' class="form-control"  placeholder="Fecha" />
+                <div class='input-group date' id='datecontrol' >
+                    <input type='text' class="form-control"  name="fecha" placeholder="Fecha"  />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
                </span>
-
-            </div>
-            
-
+            </div>           
 
          </div>
-         <div class="col-md-8">
+         <div class="col-md-6">
             <div class="form-group">
-               <label>Hora</label>
-               <!-- input id="timepicker1" type="text"  class="form-control border-input" name="timepicker1"/ -->
-               <div class='input-group date'>
-                  <input name="hora" type='text' id="datetimepicker3" class="form-control customtimepicker" required="required"
-                     placeholder="h:i AM">
-                  <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-time"></span>
-                  </span>
-               </div>
+               <label>Monto</label>
+               <div class="input-group"> 
+                        <span class="input-group-addon">$</span>
+                    <input type="text" class="form-control border-input" name="monto" placeholder="Costo (Ej: 7.00, 10.00 )" pattern="[0-9]+(\.[0-9]{1,2})" onkeypress="return isNumberKey(event)" required="required">
+                    </div> 
             </div>
-         </div>
-      </div>
-      <div class="row">
-         <div class="col-md-12">
-            <h4>Descripcion</h4>
-            <!-- <div class="card"> 
-               <div class="card-body">-->
-            <textarea name="descripcion" class="form-control" required="required" id="exampleTextarea" rows="3"></textarea>
-            <!--    </div>
-               </div> -->
          </div>
       </div>
       <div class="row">

@@ -13,25 +13,26 @@
                     <a class="btn btn-primary" href="{{ url('creacion') }}" role="button" style="float: right;">Crear Paciente</a>
                 </div>
 
-                <div class="panel-body">
+                <div class="panel-body table-responsive no-padding">
                     <!-- form id="buscar_expedientes" name="buscar_expedientes" class="buscar_expedientes"  autocomplete="on" method="post"> 
                         {-{ csrf_field() }}                        
                                     <button type="submit" class="btn btn-info btn-fill btn-wd" id="buscarExpediente">Busca expediente</button>                        
                                 </form -->
 
-                                <div class="table-responsive" id="div-tabla-pacientes" style="display: none;">
+                                {{-- <div class="table-responsive" id="div-tabla-pacientes" style="display: none;"> --}}
+                                    <span id="span-tabla-pacientes" style="display: none;">
                                     <table id="tabla-pacientes" class="table table-striped table-bordered" style="width:100%;"  >
                                         <thead>
                                             <tr>
                                                 <th class="text-center">#</th>
                                                 <!-- th class="text-center">codigo paciente</th -->
-                                                <th class="text-center">nombre completo</th>
-                                                <th class="text-center">sexo</th>
-                                                <th class="text-center">fecha nacimiento</th>
-                                                <th class="text-center">telefonos</th>
-                                                <th class="text-center">direccion</th>
-                                                <th class="text-center">email</th>
-                                                <th class="text-center">     </th>
+                                                <th class="text-center">Nombre completo</th>
+                                                <th class="text-center">Sexo</th>
+                                                <th class="text-center">Fecha nacimiento</th>
+                                                <th class="text-center">Telefonos</th>
+                                                <th class="text-center">Direccion</th>
+                                                <th class="text-center">Email</th>
+                                                <th class="text-center">Expediente</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tabla-pacientes-tbody" class="text-center">
@@ -56,7 +57,7 @@
                                                     lass="expediente" method="get" action="{{route('paciente.expediente.get',$paciente->id)}}"> 
                                                     {{-- {{ csrf_field() }} --}}
                                                     {{-- <input type="hidden" class="form-control border-input" name="paciente_id" value="{{$paciente->id}}"> --}}
-                                                    <button type="submit" class="btn btn-info btn-fill btn-wd">Acceder al expediente</button>
+                                                    <button type="submit" class="btn btn-info btn-fill btn-wd">Acceder</button>
                                                 </form>
                                             </td>            
                                         </tr>
@@ -65,8 +66,8 @@
                                     </tbody>
 
                                 </table>
-
-                            </div>
+                                </span>
+                            {{-- </div> --}}
 
                         </div>
 
@@ -111,7 +112,9 @@
 
     $( document ).ready(function() {
         console.log( "ready!listado" );
-        createDataTable('#tabla-pacientes');    
+        $("#span-tabla-pacientes").removeAttr('style');
+        createDataTable('#tabla-pacientes');         
+        
         //$("#div-tabla-pacientes").removeAttr('style');
         $('#div-tabla-pacientes').attr('style', 'display:block;');
         //populateTable();    
@@ -120,7 +123,8 @@
 
     function createDataTable(tableSelector) {
         myTable = $(tableSelector).DataTable({
-            language: {
+            "responsive":true,
+            "language": {
                 "decimal": "",
                 "emptyTable": "No hay información",
                 "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
@@ -140,6 +144,16 @@
                     "previous": "Anterior"
                 }
             },
+            "columnDefs": [                
+                { responsivePriority: 2, targets: 0 },  //#
+                { responsivePriority: 3, targets: 1 },  //nombre completo
+                { responsivePriority: 40, targets: 2 },  //sexo
+                { responsivePriority: 5, targets: 3 },  //fecha nacimiento       
+                { responsivePriority: 60, targets: 4 },  //telefonos
+                { responsivePriority: 70, targets: 5 },  //direccion
+                { responsivePriority: 80, targets: 6 },  //email                                       
+                { responsivePriority: 1, targets: 7 }   //button
+            ],
             "autoWidth": false,
             "paging":   true,
             "bLengthChange": false,

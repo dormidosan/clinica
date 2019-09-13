@@ -31,7 +31,9 @@
                                         <td>{{ $procedimiento->servicio->tipo_nombre }}</td>            
                                         <td>{{ $procedimiento->costo_total  }}</td>
                                         <td>{{ $procedimiento->total_pagado  }}</td>      
-                                        <td><button type="button" class="btn btn-success">Abonar</button></td>                                
+                                        <td>
+                                            <button type="button" class="btn btn-success abonar" data-procedimiento="{{ $procedimiento->id }}">Abonar</button>
+                                        </td>                                
                                     </tr>
                                 @empty
 

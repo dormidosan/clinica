@@ -31,9 +31,13 @@
     </div>
     <div class="col-md-4">
      <div class="panel panel-default">
-      <div class="panel-heading">Generar pago</div>
+      <div class="panel-heading" >Generar pago</div>
+        @include('pacientes.pagos.layout2')
+        <span id="listado-pagos">
+          
+        </span>
 
-      @include('pacientes.pagos.layout2')
+      
 
     </div>
   </div>
@@ -61,11 +65,11 @@
 <link rel="stylesheet" href="{{ asset('libs/datepicker/css/bootstrap-datepicker3.min.css') }}">
 
 <style type="text/css">
-td.disabled.day {
-  background-color: #EEEEEE !important;
-  border-radius: 0px !important;
-  color: red !important;
-}
+  td.disabled.day {
+    background-color: #EEEEEE !important;
+    border-radius: 0px !important;
+    color: red !important;
+  }
 
 </style>
 @endsection
@@ -105,7 +109,9 @@ td.disabled.day {
         endDate: new Date(),
         autoclose: true,
         language: "es",
-        format: "yyyy-mm-dd"
+        format: "yyyy-mm-dd",
+        todayBtn: "linked",
+        todayHighlight: true
         // format: "dd-mm-yyyy"
       });
     }
@@ -114,8 +120,67 @@ td.disabled.day {
     // $('#datecontrol').datetimepicker({
     //             sideBySide: true
     //             });
+    $('button.abonar').click(function(){
+      //var data = $.parseJSON($(this).attr('data-procedimiento'));
+      var procedimiento_id = $(this).attr('data-procedimiento');
+      console.log(procedimiento_id);
+
+      $.ajax({
+        type:'POST',
+        url: "{{ route('paciente.procedimiento.post') }}",
+        data:{'procedimiento_id':procedimiento_id},
+        success:function(result){
+
+                //myTable.clear().draw();
+                //myTable.rows.add(result).draw();
+                $('#listado-pagos').html(result); 
+                $('input[name=procedimiento_id]').val(procedimiento_id); 
+               console.log(result);
+              }
+
+
+            });
+
+    });
 
   });
+
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });  
+
+function isNumberKey(evt){
+  var charCode = (evt.which) ? evt.which : event.keyCode
+  if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 46 )
+    return false;
+  return true;
+}
+
+ $('#pago_nuevo').on('submit', function(e) { //use on if jQuery 1.7+
+        e.preventDefault();  //prevent form from submitting
+
+        // var values = $("#pago_nuevo :input").serializeArray();
+        // console.log(values); //use the console for debugging, F12 in Chrome, not alerts
+        var data = $("#pago_nuevo").serialize();
+        
+
+        $.ajax({
+            type:'POST',
+            url: "{{ route('paciente.pago.nuevo.post') }}",
+            data:data,
+            success:function(result){
+
+                console.log(result); 
+            }
+
+
+        });
+        console.log("exito");        
+
+        //END
+    });
 
 
 

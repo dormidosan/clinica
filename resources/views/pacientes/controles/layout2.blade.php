@@ -3,7 +3,7 @@
   <input type="hidden" name="expediente_id" value="{{$expediente->id}}">
    <div class="panel-body">
       <div class="row">
-         <div class="col-md-4">
+         <div class="col-md-6">
             <div class="form-group">
                <label>Fecha</label>
                <span id="mobile-device-datepicker" style="display: none;">
@@ -23,7 +23,7 @@
 
 
          </div>
-         <div class="col-md-8">
+         <div class="col-md-6">
             <div class="form-group">
                <label>Hora</label>
                <!-- input id="timepicker1" type="text"  class="form-control border-input" name="timepicker1"/ -->
