@@ -18,7 +18,7 @@ class DatosTableSeeder extends Seeder
         $faker = Faker::create();
 
         // 10 personas
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 10000; $i++) { 
         	\DB::table('personas')->insert(array (
 			'primer_nombre'  => $faker->firstName,
 			'segundo_nombre'  => $faker->firstName,
@@ -67,11 +67,11 @@ class DatosTableSeeder extends Seeder
 
         // 7 pacientes
 
-        for ($i=4; $i < 11 ; $i++) { 
+        for ($i=4; $i < 10000 ; $i++) { 
         	
 	    	\DB::table('pacientes')->insert(array (
 			'persona_id'  => $i,
-			'direccion'  =>  $faker->address,
+			'direccion'  =>  substr($faker->address.'***0123456789', 0, 60),
 			'email'  => $faker->freeEmail,
 			'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 			'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -81,7 +81,7 @@ class DatosTableSeeder extends Seeder
 
         // 7 expedientes
 
-        for ($i=1; $i < 8 ; $i++) { 
+        for ($i=1; $i < 9997 ; $i++) { 
         	
 	    	\DB::table('expedientes')->insert(array (
 			'paciente_id'  => $i,

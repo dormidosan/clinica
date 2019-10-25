@@ -8,7 +8,7 @@ class Pago extends Model
 {
     //
     protected $table = 'pagos';
-    protected $fillable = ['fecha','monto'];
+    protected $fillable = ['fecha','monto','procedimiento_id'];
 
     //foraneas
     public function procedimiento()

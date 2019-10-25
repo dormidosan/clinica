@@ -1,5 +1,5 @@
 
-<div class="panel-body">
+
 
     <div class="row">
         <div class="col-md-12">
@@ -16,8 +16,9 @@
                             <tr>
                                 <th class="text-center" style="padding-right: 20px !important;">Numero</th>
                                 <th class="text-center">Procedimiento</th>
-                                <th class="text-center">Fecha</th>
-                                <th class="text-center">Monto</th>
+                                <th class="text-center">Costo</th>
+                                <th class="text-center">Abonado</th>
+                                <th class="text-center">Restante</th>
                                 <th>    </th>
                                 <!-- th class="text-center"> </th -->
                             </tr>
@@ -30,9 +31,28 @@
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $procedimiento->servicio->tipo_nombre }}</td>            
                                         <td>{{ $procedimiento->costo_total  }}</td>
-                                        <td>{{ $procedimiento->total_pagado  }}</td>      
+                                        <td>{{-- {{ $procedimiento->total_pagado  }} --}}
+                                            @php
+                                                $total_pagado = 0.00                                                
+                                            @endphp
+                                            @forelse($procedimiento->pagos as $pago)
+                                                 @php
+                                                 $total_pagado = $total_pagado + $pago->monto;            
+                                                 @endphp
+                                            @empty
+                                            @endforelse
+                                            {{ $total_pagado }}
+                                        </td>    
+                                        <td>{{ $procedimiento->costo_total - $total_pagado }}</td>  
                                         <td>
-                                            <button type="button" class="btn btn-success abonar" data-procedimiento="{{ $procedimiento->id }}">Abonar</button>
+                                            @if ($procedimiento->pagado)
+                                                <span style="color: blue">Pagado</span>
+                                            @else
+                                                <button type="button" 
+                                                class="btn btn-success abonar" 
+                                                data-procedimiento="{{ $procedimiento->id }}" >Abonar</button>
+                                                
+                                            @endif
                                         </td>                                
                                     </tr>
                                 @empty
@@ -92,10 +112,4 @@
     </div>
 
 
-
-
-
-
-
-</div>
 

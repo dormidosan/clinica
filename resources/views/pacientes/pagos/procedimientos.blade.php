@@ -1,5 +1,6 @@
 
 <table class="table table-striped table-bordered" >
+  <caption>Procedimiento: {{ $procedimiento->servicio->tipo_nombre }}</caption>
   <thead>
     <th>fecha</th>
     <th>monto</th>

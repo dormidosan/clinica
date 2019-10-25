@@ -38,7 +38,9 @@ Route::get('paciente/{paciente_id}/controles', 'ControlController@controles')->n
 Route::get('paciente/{paciente_id}/pagos', 'PagoController@pagos')->name('paciente.pagos.get');
 
 Route::post('paciente/procedimiento', 'ProcedimientoController@procedimiento')->name('paciente.procedimiento.post');
-Route::post('paciente/pago/nuevo', 'PagoController@generar_pago')->name('paciente.pago.nuevo.post');
+Route::post('paciente/pago/nuevo', 'PagoController@pago_nuevo')->name('paciente.pago.nuevo.post');
+
+Route::get('paciente/{paciente_id}/pago/listado','PagoController@pago_listado')->name('paciente.pago.listado.get');
 
 
 

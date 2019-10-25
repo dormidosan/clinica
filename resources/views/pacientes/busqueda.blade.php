@@ -5,7 +5,8 @@
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
+        <!-- <div class="col-md-12"> -->
             <div class="panel panel-default">
 
                 <div class="panel-heading clearfix">
@@ -20,6 +21,9 @@
                                 </form -->
 
                                 {{-- <div class="table-responsive" id="div-tabla-pacientes" style="display: none;"> --}}
+                                    <span id="span-tabla-pacientes-waiting">
+                                        <h4><p style="text-align: center;">Cargando resultados...</p></h4>
+                                    </span>
                                     <span id="span-tabla-pacientes" style="display: none;">
                                     <table id="tabla-pacientes" class="table table-striped table-bordered" style="width:100%;"  >
                                         <thead>
@@ -114,9 +118,9 @@
         console.log( "ready!listado" );
         $("#span-tabla-pacientes").removeAttr('style');
         createDataTable('#tabla-pacientes');         
-        
+        $('#span-tabla-pacientes-waiting').attr('style', 'display:none;');
         //$("#div-tabla-pacientes").removeAttr('style');
-        $('#div-tabla-pacientes').attr('style', 'display:block;');
+        //$('#div-tabla-pacientes').attr('style', 'display:block;');
         //populateTable();    
         //document.getElementById("tabla-pacientes").style.display = "block"; 
     });

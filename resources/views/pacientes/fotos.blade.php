@@ -177,9 +177,9 @@ img{border:none;}
  this.imagePreview = function(){  
    /* CONFIG */
 
-   xOffset = 10;
-   yOffset = 30;
-   cStyle = "width:500px";
+   xOffset = 150;
+   yOffset = 40;
+   cStyle = "width:300px";
 
       // these 2 variable determine popup's distance from the cursor
       // you might want to adjust to get the right result

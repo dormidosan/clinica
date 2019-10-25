@@ -103,7 +103,8 @@ class PacienteController extends Controller
     {   
         #cambiar a ajax
         #$pacientes = Paciente::where('id','=','0')->get();
-        $pacientes = Paciente::all();
+        //$pacientes = Paciente::all();
+        $pacientes = Paciente::paginate(100);
         //return view('pacientes.busqueda');
         return view('pacientes.busqueda')->with('pacientes', $pacientes);
     }

@@ -26,19 +26,22 @@
       <div class="col-md-8">
        <div class="panel panel-default">
         <div class="panel-heading">Historial de pagos</div>
-        @include('pacientes.pagos.layout1')
+        <div class="panel-body" id="layout1">
+          @include('pacientes.pagos.layout1')
+        </div>
       </div>
     </div>
     <div class="col-md-4">
      <div class="panel panel-default">
       <div class="panel-heading" >Generar pago</div>
+      <div class="panel-body" id="layout2">
         @include('pacientes.pagos.layout2')
         <span id="listado-pagos">
-          
+
         </span>
 
-      
-
+        
+      </div>
     </div>
   </div>
 </div>
@@ -116,32 +119,11 @@
       });
     }
     
-
+    clickActionButton();
     // $('#datecontrol').datetimepicker({
     //             sideBySide: true
     //             });
-    $('button.abonar').click(function(){
-      //var data = $.parseJSON($(this).attr('data-procedimiento'));
-      var procedimiento_id = $(this).attr('data-procedimiento');
-      console.log(procedimiento_id);
-
-      $.ajax({
-        type:'POST',
-        url: "{{ route('paciente.procedimiento.post') }}",
-        data:{'procedimiento_id':procedimiento_id},
-        success:function(result){
-
-                //myTable.clear().draw();
-                //myTable.rows.add(result).draw();
-                $('#listado-pagos').html(result); 
-                $('input[name=procedimiento_id]').val(procedimiento_id); 
-               console.log(result);
-              }
-
-
-            });
-
-    });
+    
 
   });
 
@@ -149,9 +131,39 @@
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
-  });  
+  }); 
 
-function isNumberKey(evt){
+  function clickActionButton() {
+    $('button.abonar').click(function(){
+      //var data = $.parseJSON($(this).attr('data-procedimiento'));
+      var procedimiento_id = $(this).attr('data-procedimiento');
+      console.log(procedimiento_id);
+
+      recuperarPagos(procedimiento_id);
+      $('#submit-abono').attr("disabled", false);  
+
+    });
+  }
+
+  function recuperarPagos(procedimiento_id) {
+   $.ajax({
+    type:'POST',
+    url: "{{ route('paciente.procedimiento.post') }}",
+    data:{'procedimiento_id':procedimiento_id},
+    success:function(result){
+
+                //myTable.clear().draw();
+                //myTable.rows.add(result).draw();
+                $('#listado-pagos').html(result); 
+                $('input[name=procedimiento_id]').val(procedimiento_id); 
+                //console.log(result);
+              }
+
+
+            });
+ }   
+
+ function isNumberKey(evt){
   var charCode = (evt.which) ? evt.which : event.keyCode
   if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 46 )
     return false;
@@ -164,24 +176,62 @@ function isNumberKey(evt){
         // var values = $("#pago_nuevo :input").serializeArray();
         // console.log(values); //use the console for debugging, F12 in Chrome, not alerts
         var data = $("#pago_nuevo").serialize();
+        var procedimiento_id = $('input[name=procedimiento_id]').val(); 
+        console.log(data);
         
 
         $.ajax({
-            type:'POST',
-            url: "{{ route('paciente.pago.nuevo.post') }}",
-            data:data,
-            success:function(result){
-
-                console.log(result); 
-            }
+          type:'POST',
+          url: "{{ route('paciente.pago.nuevo.post') }}",
+          data:data,
+          success:function(result){
+            console.log(result);
+            if (result == 1) {
+              recuperarPagos(procedimiento_id);            
+              updateLayout1();
+              //resetForm();
+            } else {
+                alert('precio no valido');
+            } 
+            
+          }
 
 
         });
-        console.log("exito");        
+        console.log("exito");   
+
+          
 
         //END
-    });
+      });
 
+ function resetForm() {
+   $(':input','#pago_nuevo')
+              .not(':button, :submit, :reset, :hidden')
+              .val('')
+              .prop('checked', false)
+              .prop('selected', false); 
+ }
+
+ function updateLayout1() {
+   $.ajax({
+    type:'GET',
+    url: "{{ route('paciente.pago.listado.get',$expediente->paciente->id) }}",
+    //data:{'procedimiento_id':procedimiento_id},
+    success:function(result){
+
+                //myTable.clear().draw();
+                //myTable.rows.add(result).draw();
+                //$('#listado-pagos').html(result); 
+                //$('input[name=procedimiento_id]').val(procedimiento_id); 
+                $('#layout1').html(result); 
+                clickActionButton();
+                //console.log(result);
+              }
+
+
+            });
+ } 
 
 
 </script>
